@@ -1,3 +1,3 @@
 # Jobify
 
-#### This is a App tracks Your Job Search
+#### This is an App Tracks Your Job Search
