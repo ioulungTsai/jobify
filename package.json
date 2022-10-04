@@ -1,0 +1,27 @@
+{
+  "name": "jobify",
+  "version": "1.0.0",
+  "description": "#### This is an App Tracks Your Job Search",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ioulungTsai/jobify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ioulungTsai/jobify/issues"
+  },
+  "homepage": "https://github.com/ioulungTsai/jobify#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
