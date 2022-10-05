@@ -25,6 +25,38 @@ const reducer = (state, action) => {
     }
   }
 
+  if(action.type === REGISTER_USER_BIGIN) {
+    return {
+      ...state,
+      isLoadin: true
+    }
+  }
+
+  if(action.type === REGISTER_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoadin: false,
+      token: action.payload.token,
+      user: action.payload.user,
+      userLocation: action.payload.location,
+      jobLocation: action.payload.location,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'User Created! Redirecting...',
+    }
+  }
+
+  if(action.type === REGISTER_USER_ERROR) {
+    return {
+      ...state,
+      isLoadin: false,
+
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
+    }
+  }
+
   throw Error(`no such action : ${action.type}` )
 }
 
