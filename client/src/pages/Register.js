@@ -12,7 +12,7 @@ const initialStates = {
 
 const Register = () => {
   const [values, setValues] = useState(initialStates)
-  const {isLoading, showAlert, displayAlert} = useAppContext()
+  const {isLoading, showAlert, displayAlert, registerUser} = useAppContext()
 
   const toggleMember = () => {
     setValues({...values, isMember: !values.isMember})
@@ -22,20 +22,25 @@ const Register = () => {
     setValues({...values, [e.target.name]: e.target.value})
   }
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault()
     const {name, email, password, isMember} = values
     if(!email || !password || (!isMember && !name)) {
       displayAlert()
       return
     }
-    console.log(values);
+    const currentUser = {name, email, password}
+    if(isMember){
+      console.log('already a member')
+    } else {
+      registerUser(currentUser)
+    }
   }
 
 
   return (
     <Wrapper className='full-page'>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={onSubmit}>
         <Logo />
         <h3>{values.isMember ? 'Login' : 'Register'}</h3>
         {showAlert && <Alert />}
@@ -47,7 +52,7 @@ const Register = () => {
         <FormRow type='email' name='email' value={values.email} handleChange={handleChange} />
         {/* password input */}
         <FormRow type='password' name='password' value={values.password} handleChange={handleChange} />
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           submit
         </button>
         <p>
