@@ -36,13 +36,13 @@ const login = async (req, res) => {
   }
   const user = await User.findOne({ email }).select("+password")
   if (!user) {
-    throw UnauthenticatedError("Invalid Credentials")
+    throw new UnauthenticatedError("Invalid Credentials")
   }
   console.log(user)
 
   const isPasswordCorrect = await user.comparePassword(password)
   if (!isPasswordCorrect) {
-    throw UnauthenticatedError("Invalid Credentials")
+    throw new UnauthenticatedError("Invalid Credentials")
   }
   const token = user.createJWT()
   user.password = undefined
