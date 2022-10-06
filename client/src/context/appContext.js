@@ -7,7 +7,8 @@ import {
   CLEAR_ALERT,
   SETUP_USER_BIGIN,
   SETUP_USER_SUCCESS,
-  SETUP_USER_ERROR
+  SETUP_USER_ERROR,
+  TOGGLE_SIDEBAR,
 } from "./actions"
 
 const token = localStorage.getItem("token")
@@ -23,6 +24,7 @@ const initialSate = {
   token: token,
   userLocation: userLocation || "",
   jobLocation: userLocation || "",
+  showSidebar: false,
 }
 
 const AppContext = React.createContext()
@@ -53,10 +55,10 @@ const AppProvider = ({ children }) => {
     localStorage.removeItem("location")
   }
 
-  const setupUser = async ({currentUser, endPoint, alertText}) => {
+  const setupUser = async ({ currentUser, endPoint, alertText }) => {
     dispatch({ type: SETUP_USER_BIGIN })
     try {
-      const {data} = await axios.post(`/api/v1/auth/${endPoint}`, currentUser)
+      const { data } = await axios.post(`/api/v1/auth/${endPoint}`, currentUser)
 
       const { user, token, location } = data
       dispatch({
@@ -65,7 +67,6 @@ const AppProvider = ({ children }) => {
       })
       addUserToLocalStorage({ user, token, location })
     } catch (error) {
-
       dispatch({
         type: SETUP_USER_ERROR,
         payload: { msg: error.response.data.msg },
@@ -74,8 +75,14 @@ const AppProvider = ({ children }) => {
     clearAlert()
   }
 
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR })
+  }
+
   return (
-    <AppContext.Provider value={{ ...state, displayAlert, setupUser }}>
+    <AppContext.Provider
+      value={{ ...state, displayAlert, setupUser, toggleSidebar }}
+    >
       {children}
     </AppContext.Provider>
   )
