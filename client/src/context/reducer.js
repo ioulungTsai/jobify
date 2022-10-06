@@ -4,8 +4,11 @@ import {
   SETUP_USER_BIGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
-  TOGGLE_SIDEBAR
+  TOGGLE_SIDEBAR,
+  LOGOUT_USER
 } from "./actions"
+
+import { initialSate } from "./appContext"
 
 const reducer = (state, action) => {
   if(action.type === DISPLAY_ALERT) {
@@ -62,6 +65,16 @@ const reducer = (state, action) => {
     return {
       ...state,
       showSidebar: !state.showSidebar
+    }
+  }
+
+  if(action.type === LOGOUT_USER) {
+    return {
+      ...initialSate,
+      user: null,
+      token: null,
+      jobLocation: '',
+      userLocation: ''
     }
   }
 
