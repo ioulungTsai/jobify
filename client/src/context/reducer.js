@@ -5,7 +5,10 @@ import {
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
   TOGGLE_SIDEBAR,
-  LOGOUT_USER
+  LOGOUT_USER,
+  UPDATE_USER_BIGIN,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_ERROR,
 } from "./actions"
 
 import { initialSate } from "./appContext"
@@ -75,6 +78,38 @@ const reducer = (state, action) => {
       token: null,
       jobLocation: '',
       userLocation: ''
+    }
+  }
+
+  if(action.type === UPDATE_USER_BIGIN) {
+    return {
+      ...state,
+      isLoadin: true
+    }
+  }
+
+  if(action.type === UPDATE_USER_SUCCESS) {
+    return {
+      ...state,
+      isLoadin: false,
+      token: action.payload.token,
+      user: action.payload.user,
+      userLocation: action.payload.location,
+      jobLocation: action.payload.location,
+      showAlert: true,
+      alertType: 'success',
+      alertText: 'User Profile Updated!',
+    }
+  }
+
+  if(action.type === UPDATE_USER_ERROR) {
+    return {
+      ...state,
+      isLoadin: false,
+
+      showAlert: true,
+      alertType: 'danger',
+      alertText: action.payload.msg,
     }
   }
 
