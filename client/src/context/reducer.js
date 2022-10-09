@@ -9,37 +9,39 @@ import {
   UPDATE_USER_BIGIN,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
+  HANDLE_CHANGE,
+  CLEAR_VALUES,
 } from "./actions"
 
 import { initialSate } from "./appContext"
 
 const reducer = (state, action) => {
-  if(action.type === DISPLAY_ALERT) {
+  if (action.type === DISPLAY_ALERT) {
     return {
       ...state,
       showAlert: true,
-      alertType: 'danger',
-      alertText: 'Please provide all values!'
+      alertType: "danger",
+      alertText: "Please provide all values!",
     }
   }
 
-  if(action.type === CLEAR_ALERT) {
+  if (action.type === CLEAR_ALERT) {
     return {
       ...state,
       showAlert: false,
-      alertType: '',
-      alertText: ''
+      alertType: "",
+      alertText: "",
     }
   }
 
-  if(action.type === SETUP_USER_BIGIN) {
+  if (action.type === SETUP_USER_BIGIN) {
     return {
       ...state,
-      isLoadin: true
+      isLoadin: true,
     }
   }
 
-  if(action.type === SETUP_USER_SUCCESS) {
+  if (action.type === SETUP_USER_SUCCESS) {
     return {
       ...state,
       isLoadin: false,
@@ -48,47 +50,47 @@ const reducer = (state, action) => {
       userLocation: action.payload.location,
       jobLocation: action.payload.location,
       showAlert: true,
-      alertType: 'success',
+      alertType: "success",
       alertText: action.payload.alertText,
     }
   }
 
-  if(action.type === SETUP_USER_ERROR) {
+  if (action.type === SETUP_USER_ERROR) {
     return {
       ...state,
       isLoadin: false,
 
       showAlert: true,
-      alertType: 'danger',
+      alertType: "danger",
       alertText: action.payload.msg,
     }
   }
 
-  if(action.type === TOGGLE_SIDEBAR) {
+  if (action.type === TOGGLE_SIDEBAR) {
     return {
       ...state,
-      showSidebar: !state.showSidebar
+      showSidebar: !state.showSidebar,
     }
   }
 
-  if(action.type === LOGOUT_USER) {
+  if (action.type === LOGOUT_USER) {
     return {
       ...initialSate,
       user: null,
       token: null,
-      jobLocation: '',
-      userLocation: ''
+      jobLocation: "",
+      userLocation: "",
     }
   }
 
-  if(action.type === UPDATE_USER_BIGIN) {
+  if (action.type === UPDATE_USER_BIGIN) {
     return {
       ...state,
-      isLoadin: true
+      isLoadin: true,
     }
   }
 
-  if(action.type === UPDATE_USER_SUCCESS) {
+  if (action.type === UPDATE_USER_SUCCESS) {
     return {
       ...state,
       isLoadin: false,
@@ -97,23 +99,47 @@ const reducer = (state, action) => {
       userLocation: action.payload.location,
       jobLocation: action.payload.location,
       showAlert: true,
-      alertType: 'success',
-      alertText: 'User Profile Updated!',
+      alertType: "success",
+      alertText: "User Profile Updated!",
     }
   }
 
-  if(action.type === UPDATE_USER_ERROR) {
+  if (action.type === UPDATE_USER_ERROR) {
     return {
       ...state,
       isLoadin: false,
 
       showAlert: true,
-      alertType: 'danger',
+      alertType: "danger",
       alertText: action.payload.msg,
     }
   }
 
-  throw Error(`no such action : ${action.type}` )
+  if (action.type === HANDLE_CHANGE) {
+    return {
+      ...state,
+      [action.payload.name]: action.payload.value,
+    }
+  }
+
+  if (action.type === CLEAR_VALUES) {
+    const initialSate = {
+      isEditing: false,
+      editJobId: "",
+      position: "",
+      company: "",
+      jobLocation: state.userLocation,
+      jobType: "full-time",
+      status: "pending",
+    }
+
+    return {
+      ...state,
+      ...initialSate,
+    }
+  }
+
+  throw Error(`no such action : ${action.type}`)
 }
 
 export default reducer
