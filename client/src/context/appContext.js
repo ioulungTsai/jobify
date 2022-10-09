@@ -9,7 +9,7 @@ import {
   SETUP_USER_SUCCESS,
   SETUP_USER_ERROR,
   TOGGLE_SIDEBAR,
-  LOGOUT_USER
+  LOGOUT_USER,
 } from "./actions"
 
 const token = localStorage.getItem("token")
@@ -81,17 +81,35 @@ const AppProvider = ({ children }) => {
   }
 
   const logoutUser = () => {
-    dispatch({type: LOGOUT_USER})
+    dispatch({ type: LOGOUT_USER })
     removeUserToLocalStorage()
   }
 
   const updateUser = async (currentUser) => {
-    console.log(currentUser);
+    try {
+      const { data } = await axios.patch(
+        "/api/v1/auth/updateUser",
+        currentUser,
+        {
+          headers: { Authorization: `Bearer ${state.token}` },
+        }
+      )
+      console.log(data)
+    } catch (error) {
+      console.log(error.response)
+    }
   }
 
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, setupUser, toggleSidebar, logoutUser, updateUser }}
+      value={{
+        ...state,
+        displayAlert,
+        setupUser,
+        toggleSidebar,
+        logoutUser,
+        updateUser,
+      }}
     >
       {children}
     </AppContext.Provider>
