@@ -32,7 +32,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body
   if (!email || !password) {
-    throw BadRequestError("Please provide all values")
+    throw new BadRequestError("Please provide all values")
   }
   const user = await User.findOne({ email }).select("+password")
   if (!user) {
