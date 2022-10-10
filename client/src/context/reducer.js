@@ -17,6 +17,7 @@ import {
   GET_JOBS_BEGIN,
   GET_JOBS_SUCCESS,
   SET_EDIT_JOB,
+  DELETE_JOB_BEGIN,
 } from "./actions"
 
 import { initialSate } from "./appContext"
@@ -43,14 +44,14 @@ const reducer = (state, action) => {
   if (action.type === SETUP_USER_BIGIN) {
     return {
       ...state,
-      isLoadin: true,
+      isLoading: true,
     }
   }
 
   if (action.type === SETUP_USER_SUCCESS) {
     return {
       ...state,
-      isLoadin: false,
+      isLoading: false,
       token: action.payload.token,
       user: action.payload.user,
       userLocation: action.payload.location,
@@ -64,7 +65,7 @@ const reducer = (state, action) => {
   if (action.type === SETUP_USER_ERROR) {
     return {
       ...state,
-      isLoadin: false,
+      isLoading: false,
 
       showAlert: true,
       alertType: "danger",
@@ -92,14 +93,14 @@ const reducer = (state, action) => {
   if (action.type === UPDATE_USER_BIGIN) {
     return {
       ...state,
-      isLoadin: true,
+      isLoading: true,
     }
   }
 
   if (action.type === UPDATE_USER_SUCCESS) {
     return {
       ...state,
-      isLoadin: false,
+      isLoading: false,
       token: action.payload.token,
       user: action.payload.user,
       userLocation: action.payload.location,
@@ -113,7 +114,7 @@ const reducer = (state, action) => {
   if (action.type === UPDATE_USER_ERROR) {
     return {
       ...state,
-      isLoadin: false,
+      isLoading: false,
 
       showAlert: true,
       alertType: "danger",
@@ -148,14 +149,14 @@ const reducer = (state, action) => {
   if (action.type === CREATE_JOB_BEGIN) {
     return {
       ...state,
-      isLoadin: true,
+      isLoading: true,
     }
   }
 
   if (action.type === CREATE_JOB_SUCCESS) {
     return {
       ...state,
-      isLoadin: false,
+      isLoading: false,
       showAlert: true,
       alertType: "success",
       alertText: "New Job Created!",
@@ -165,7 +166,7 @@ const reducer = (state, action) => {
   if (action.type === CREATE_JOB_ERROR) {
     return {
       ...state,
-      isLoadin: false,
+      isLoading: false,
       showAlert: true,
       alertType: "danger",
       alertText: action.payload.msg,
@@ -173,13 +174,13 @@ const reducer = (state, action) => {
   }
 
   if (action.type === GET_JOBS_BEGIN) {
-    return { ...state, isLoadin: true, showAlert: false }
+    return { ...state, isLoading: true, showAlert: false }
   }
 
   if (action.type === GET_JOBS_SUCCESS) {
     return {
       ...state,
-      isLoadin: false,
+      isLoading: false,
       jobs: action.payload.jobs,
       totalJobs: action.payload.totalJobs,
       numOfPages: action.payload.numOfPages,
@@ -198,6 +199,13 @@ const reducer = (state, action) => {
       jobLocation: jobLocation,
       jobType: jobType,
       status: status,
+    }
+  }
+
+  if(action.type === DELETE_JOB_BEGIN) {
+    return {
+      ...state,
+      isLoading: true
     }
   }
 
