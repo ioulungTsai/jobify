@@ -11,12 +11,12 @@ const Job = ({
   company,
   jobLocation,
   jobType,
-  createAt,
+  createdAt,
   status,
 }) => {
   const { setEditJob, deleteJob } = useAppContext()
 
-  let date = moment(createAt)
+  let date = moment(createdAt)
   date = date.format("MMM Do, YYYY")
 
   return (
