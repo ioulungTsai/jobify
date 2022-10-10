@@ -7,7 +7,7 @@ import Wrapper from "../assets/wrappers/ChartsContainer"
 
 const ChartsContainer = () => {
   const [barChart, setBarChart] = useState(true)
-  const { monthlyApplicatoins: data } = useAppContext()
+  const { monthlyApplications: data } = useAppContext()
 
   return (
     <Wrapper>
