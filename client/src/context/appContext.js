@@ -54,7 +54,7 @@ const initialSate = {
   status: "pending",
   jobs: [],
   totalJobs: 0,
-  numOfPage: 1,
+  numOfPages: 1,
   page: 1,
   stats: {},
   monthlyApplications: [],
@@ -221,13 +221,13 @@ const AppProvider = ({ children }) => {
     dispatch({ type: GET_JOBS_BEGIN })
     try {
       const { data } = await authFetch(url)
-      const { jobs, totalJobs, numOfPage } = data
+      const { jobs, totalJobs, numOfPages } = data
       dispatch({
         type: GET_JOBS_SUCCESS,
         payload: {
           jobs,
           totalJobs,
-          numOfPage,
+          numOfPages,
         },
       })
     } catch (error) {
