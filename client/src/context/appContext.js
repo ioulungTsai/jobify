@@ -27,6 +27,7 @@ import {
   EDIT_JOB_ERROR,
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCESS,
+  CLEAR_FILTERS,
 } from "./actions"
 
 const token = localStorage.getItem("token")
@@ -288,7 +289,7 @@ const AppProvider = ({ children }) => {
   }
 
   const clearFilters = () => {
-    console.log('clear filters')
+    dispatch({type: CLEAR_FILTERS})
   }
 
   return (
