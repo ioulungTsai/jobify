@@ -28,6 +28,7 @@ import {
   SHOW_STATS_BEGIN,
   SHOW_STATS_SUCESS,
   CLEAR_FILTERS,
+  CHANGE_PAGE,
 } from "./actions"
 
 const token = localStorage.getItem("token")
@@ -58,11 +59,11 @@ const initialSate = {
   page: 1,
   stats: {},
   monthlyApplications: [],
-  search: '',
-  searchStatus: 'all',
-  searchType: 'all',
-  sort: 'latest',
-  sortOptions: ['latest', 'oldest', 'a-z', 'z-a'],
+  search: "",
+  searchStatus: "all",
+  searchType: "all",
+  sort: "latest",
+  sortOptions: ["latest", "oldest", "a-z", "z-a"],
 }
 
 const AppContext = React.createContext()
@@ -210,11 +211,11 @@ const AppProvider = ({ children }) => {
   }
 
   const getJobs = async () => {
-    const {search, searchStatus, searchType, sort} = state
+    const { search, searchStatus, searchType, sort } = state
 
     let url = `/jobs?status=${searchStatus}&jobType=${searchType}&sort=${sort}`
 
-    if(search) {
+    if (search) {
       url = url + `&search=${search}`
     }
 
@@ -295,7 +296,11 @@ const AppProvider = ({ children }) => {
   }
 
   const clearFilters = () => {
-    dispatch({type: CLEAR_FILTERS})
+    dispatch({ type: CLEAR_FILTERS })
+  }
+
+  const changePage = (page) => {
+    dispatch({ type: CHANGE_PAGE, payload: { page } })
   }
 
   return (
@@ -315,7 +320,8 @@ const AppProvider = ({ children }) => {
         deleteJob,
         editJob,
         showStats,
-        clearFilters
+        clearFilters,
+        changePage,
       }}
     >
       {children}
