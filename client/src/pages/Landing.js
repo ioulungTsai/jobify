@@ -16,7 +16,7 @@ const Landing = () => {
             job <strong>tracking</strong> app
           </h1>
           <p>
-            I'm baby fashion axe shoreditch neutra four dollar toast ex pinterest veniam gentrify chambray selvage. Scenester schlitz shabby chic in excepteur jean shorts gastropub non copper mug.
+            Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade wind in your sails. Explore. Dream. Discover.
           </p>
           <Link to='/register' className="btn btn-hero">
             Login/Register
