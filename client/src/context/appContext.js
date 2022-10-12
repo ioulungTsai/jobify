@@ -232,8 +232,9 @@ const AppProvider = ({ children }) => {
         },
       })
     } catch (error) {
-      console.log(error.reponse)
-      // logoutUser()
+      logoutUser()
+      // for testing
+      // console.log(error.reponse)
     }
     clearAlert()
   }
@@ -272,8 +273,9 @@ const AppProvider = ({ children }) => {
       await authFetch.delete(`/jobs/${jobId}`)
       getJobs()
     } catch (error) {
-      console.log(error.response)
-      // logoutUser()
+      logoutUser()
+      // for testing
+      // console.log(error.response)
     }
   }
 
@@ -289,8 +291,9 @@ const AppProvider = ({ children }) => {
         },
       })
     } catch (error) {
-      console.log(error.response)
-      // logoutUser()
+      logoutUser()
+      // for testing
+      // console.log(error.response)
     }
     clearAlert()
   }
