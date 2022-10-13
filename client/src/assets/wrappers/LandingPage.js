@@ -21,6 +21,9 @@ const Wrapper = styled.main`
       color: var(--primary-500);
     }
   }
+  blockquote {
+    margin: 0;
+  }
   p {
     color: var(--grey-600);
   }

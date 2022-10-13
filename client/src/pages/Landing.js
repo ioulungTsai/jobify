@@ -15,9 +15,11 @@ const Landing = () => {
           <h1>
             job <strong>tracking</strong> app
           </h1>
-          <p>
-            Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade wind in your sails. Explore. Dream. Discover.
-          </p>
+          <blockquote cite="https://quotepark.com/authors/h-jackson-brown-jr/">
+            <p>
+              Twenty years from now you will be more disappointed by the things you didn’t do than by the ones you did. So throw off the bowlines. Sail away from the safe harbor. Catch the trade wind in your sails. Explore. Dream. Discover. <br/> —  H. Jackson Brown Jr.
+            </p>
+          </blockquote>
           <Link to='/register' className="btn btn-hero">
             Login/Register
           </Link>
