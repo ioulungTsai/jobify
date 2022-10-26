@@ -36,6 +36,3 @@ export const SHOW_STATS_SUCESS = "SHOW_STATS_SUCESS"
 export const CLEAR_FILTERS = "CLEAR_FILTERS"
 
 export const CHANGE_PAGE = "CHANGE_PAGE"
-
-
-
